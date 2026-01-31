@@ -1,13 +1,13 @@
+// Restored version of App.tsx from commit 1a30f35ae909565653a7949ee42414683c715dfb
+
 import React from 'react';
-import { motion } from 'framer-motion';
 
 const App = () => {
     return (
-        <motion.div>
-            {/* Other components */}
-            <motion.img src="/assets/ora-logo.png" alt="logo" />
-            {/* Animation and other code */}
-        </motion.div>
+        <div>
+            <h1>Welcome to the ORA App</h1>
+            {/* Intro animation and other functionalities */}
+        </div>
     );
 };
 
