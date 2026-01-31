@@ -1,4 +1,4 @@
-https://farstar09.github.io/ORA/import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { motion, useInView } from "framer-motion";
