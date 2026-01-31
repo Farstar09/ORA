@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { motion, useInView } from "framer-motion";
@@ -765,45 +765,43 @@ export default function App() {
   const [handoff, setHandoff] = useState(false);
 
   return (
-    <Router>
-      <>
-        {introVisible ? (
-          <Intro
-            onHandoff={() => setHandoff(true)}
-            onDone={() => {
-              setIntroVisible(false);
-            }}
-          />
-        ) : null}
+    <>
+      {introVisible ? (
+        <Intro
+          onHandoff={() => setHandoff(true)}
+          onDone={() => {
+            setIntroVisible(false);
+          }}
+        />
+      ) : null}
 
-        <motion.div
-          initial={{ y: 80, opacity: 0 }}
-          animate={{ y: handoff ? 0 : 80, opacity: handoff ? 1 : 0 }}
-          transition={{ duration: 0.55, ease: "easeOut" }}
-          className="min-h-screen bg-black text-white"
-        >
-          <Nav />
-          <ScrollIndicator />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/teams" element={<Teams />} />
-            <Route path="/partners" element={<Partners />} />
-            <Route path="/news" element={<News />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/terms" element={<TermsPage />} />
-            <Route path="/privacy" element={<PrivacyPage />} />
-            <Route path="/st4r" element={<St4rPage />} />
-            {departments.map(dep => (
-              <Route
-                key={dep.slug}
-                path={`/about/${dep.slug}`}
-                element={<DepartmentPage name={dep.name} description={dep.description} members={dep.members} />}
-              />
-            ))}
-          </Routes>
-          <Footer />
-        </motion.div>
-      </>
-    </Router>
+      <motion.div
+        initial={{ y: 80, opacity: 0 }}
+        animate={{ y: handoff ? 0 : 80, opacity: handoff ? 1 : 0 }}
+        transition={{ duration: 0.55, ease: "easeOut" }}
+        className="min-h-screen bg-black text-white"
+      >
+        <Nav />
+        <ScrollIndicator />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/teams" element={<Teams />} />
+          <Route path="/partners" element={<Partners />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/terms" element={<TermsPage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/st4r" element={<St4rPage />} />
+          {departments.map(dep => (
+            <Route
+              key={dep.slug}
+              path={`/about/${dep.slug}`}
+              element={<DepartmentPage name={dep.name} description={dep.description} members={dep.members} />}
+            />
+          ))}
+        </Routes>
+        <Footer />
+      </motion.div>
+    </>
   );
 }
