@@ -704,10 +704,10 @@ const St4rPage = () => (
   </Page>
 );
 
-const INTRO_HOLD_MS = 1000;
-const INTRO_SLOW_MS = 750;
-const INTRO_FAST_MS = 750;
-const INTRO_FADE_MS = 350;
+const INTRO_HOLD_MS = 400;
+const INTRO_SLOW_MS = 500;
+const INTRO_FAST_MS = 400;
+const INTRO_FADE_MS = 300;
 
 const Intro = ({ onHandoff, onDone }: { onHandoff: () => void; onDone: () => void }) => {
   const [phase, setPhase] = useState<"hold" | "spin" | "fade">("hold");
@@ -748,11 +748,17 @@ const Intro = ({ onHandoff, onDone }: { onHandoff: () => void; onDone: () => voi
         src="assets/ora-logo.png"
         alt="ORA Logo"
         className="relative w-40 h-40"
-        initial={{ rotate: 0, opacity: 1, scale: 0.95 }}
-        animate={{ rotate: [0, 0, 90, 540], opacity: [1, 1, 1, 0], scale: [0.95, 1, 1, 1] }}
+        initial={{ rotate: 0, opacity: 0, scale: 0.8, x: -100, y: -50 }}
+        animate={{ 
+          rotate: [0, 0, 180, 720], 
+          opacity: [0, 1, 1, 0], 
+          scale: [0.8, 1, 1.05, 1], 
+          x: [-100, 0, 0, 0],
+          y: [-50, 0, 0, 0]
+        }}
         transition={{
           duration: total / 1000,
-          ease: "linear",
+          ease: [0.34, 1.56, 0.64, 1],
           times: [0, INTRO_HOLD_MS / total, (INTRO_HOLD_MS + INTRO_SLOW_MS) / total, 1]
         }}
       />
@@ -778,7 +784,7 @@ export default function App() {
       <motion.div
         initial={{ y: 80, opacity: 0 }}
         animate={{ y: handoff ? 0 : 80, opacity: handoff ? 1 : 0 }}
-        transition={{ duration: 0.55, ease: "easeOut" }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className="min-h-screen bg-black text-white"
       >
         <Nav />
