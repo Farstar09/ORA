@@ -745,7 +745,7 @@ const Intro = ({ onHandoff, onDone }: { onHandoff: () => void; onDone: () => voi
       />
 
       <motion.img
-        src="/assets/ora-logo.png"
+        src="assets/ora-logo.png"
         alt="ORA Logo"
         className="relative w-40 h-40"
         initial={{ rotate: 0, opacity: 1, scale: 0.95 }}
