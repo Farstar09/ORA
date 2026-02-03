@@ -708,6 +708,8 @@ const INTRO_HOLD_MS = 400;
 const INTRO_SLOW_MS = 500;
 const INTRO_FAST_MS = 400;
 const INTRO_FADE_MS = 300;
+const INTRO_OFFSET_X = -100;
+const INTRO_OFFSET_Y = -50;
 
 const Intro = ({ onHandoff, onDone }: { onHandoff: () => void; onDone: () => void }) => {
   const [phase, setPhase] = useState<"hold" | "spin" | "fade">("hold");
@@ -748,13 +750,13 @@ const Intro = ({ onHandoff, onDone }: { onHandoff: () => void; onDone: () => voi
         src="assets/ora-logo.png"
         alt="ORA Logo"
         className="relative w-40 h-40"
-        initial={{ rotate: 0, opacity: 0, scale: 0.8, x: -100, y: -50 }}
+        initial={{ rotate: 0, opacity: 0, scale: 0.8, x: INTRO_OFFSET_X, y: INTRO_OFFSET_Y }}
         animate={{ 
           rotate: [0, 0, 180, 720], 
           opacity: [0, 1, 1, 0], 
           scale: [0.8, 1, 1.05, 1], 
-          x: [-100, 0, 0, 0],
-          y: [-50, 0, 0, 0]
+          x: [INTRO_OFFSET_X, 0, 0, 0],
+          y: [INTRO_OFFSET_Y, 0, 0, 0]
         }}
         transition={{
           duration: total / 1000,
