@@ -708,8 +708,6 @@ const INTRO_HOLD_MS = 800;
 const INTRO_SLOW_MS = 900;
 const INTRO_FAST_MS = 700;
 const INTRO_FADE_MS = 300;
-const INTRO_OFFSET_X = 0;
-const INTRO_OFFSET_Y = -100;
 
 const Intro = ({ onHandoff, onDone }: { onHandoff: () => void; onDone: () => void }) => {
   const [phase, setPhase] = useState<"hold" | "spin" | "fade">("hold");
@@ -729,6 +727,12 @@ const Intro = ({ onHandoff, onDone }: { onHandoff: () => void; onDone: () => voi
 
   const total = INTRO_HOLD_MS + INTRO_SLOW_MS + INTRO_FAST_MS + INTRO_FADE_MS;
 
+  const letters = [
+    { char: "O", offsetX: -200, offsetY: 0 },
+    { char: "R", offsetX: 0, offsetY: -200 },
+    { char: "A", offsetX: 200, offsetY: 0 }
+  ];
+
   return (
     <motion.div
       initial={{ opacity: 1 }}
@@ -746,24 +750,29 @@ const Intro = ({ onHandoff, onDone }: { onHandoff: () => void; onDone: () => voi
         className="absolute inset-0 bg-white"
       />
 
-      <motion.div
-        className="relative text-8xl font-extrabold tracking-[0.15em] text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-fuchsia-500 to-purple-600"
-        initial={{ rotate: 0, opacity: 0, scale: 0.6, x: INTRO_OFFSET_X, y: INTRO_OFFSET_Y }}
-        animate={{ 
-          rotate: [0, 0, 360, 1080], 
-          opacity: [0, 1, 1, 0], 
-          scale: [0.6, 1.1, 1.15, 1], 
-          x: [INTRO_OFFSET_X, 0, 0, 0],
-          y: [INTRO_OFFSET_Y, 0, 0, 0]
-        }}
-        transition={{
-          duration: total / 1000,
-          ease: [0.34, 1.56, 0.64, 1],
-          times: [0, INTRO_HOLD_MS / total, (INTRO_HOLD_MS + INTRO_SLOW_MS) / total, 1]
-        }}
-      >
-        ORA
-      </motion.div>
+      <div className="relative text-7xl font-extrabold tracking-[0.15em] text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-fuchsia-500 to-purple-600">
+        {letters.map((letter, i) => (
+          <motion.span
+            key={i}
+            className="inline-block"
+            initial={{ rotate: 0, opacity: 0, scale: 0.6, x: letter.offsetX, y: letter.offsetY }}
+            animate={{ 
+              rotate: [0, 0, 360, 1080], 
+              opacity: [0, 1, 1, 0], 
+              scale: [0.6, 1.1, 1.15, 1], 
+              x: [letter.offsetX, 0, 0, 0],
+              y: [letter.offsetY, 0, 0, 0]
+            }}
+            transition={{
+              duration: total / 1000,
+              ease: [0.34, 1.56, 0.64, 1],
+              times: [0, INTRO_HOLD_MS / total, (INTRO_HOLD_MS + INTRO_SLOW_MS) / total, 1]
+            }}
+          >
+            {letter.char}
+          </motion.span>
+        ))}
+      </div>
     </motion.div>
   );
 };
