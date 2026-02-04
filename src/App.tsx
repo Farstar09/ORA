@@ -741,8 +741,8 @@ const Intro = ({ onHandoff, onDone }: { onHandoff: () => void; onDone: () => voi
     >
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: [0, 1, 0.95, 0] }}
-        transition={{ duration: 0.6, times: [0, 0.25, 0.5, 1], ease: "easeOut" }}
+        animate={{ opacity: [0, 1, 0] }}
+        transition={{ duration: 0.6, times: [0, 0.3, 1], ease: "easeOut" }}
         className="absolute inset-0 bg-white"
       />
 
