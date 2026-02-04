@@ -741,15 +741,13 @@ const Intro = ({ onHandoff, onDone }: { onHandoff: () => void; onDone: () => voi
     >
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: [0, 1, 0] }}
+        animate={{ opacity: [0, 0.7, 0] }}
         transition={{ duration: 0.6, times: [0, 0.3, 1], ease: "easeOut" }}
         className="absolute inset-0 bg-white"
       />
 
-      <motion.img
-        src="assets/ora-logo.png"
-        alt="ORA Logo"
-        className="relative w-40 h-40"
+      <motion.div
+        className="relative text-8xl font-extrabold tracking-[0.15em] text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-fuchsia-500 to-purple-600"
         initial={{ rotate: 0, opacity: 0, scale: 0.6, x: INTRO_OFFSET_X, y: INTRO_OFFSET_Y }}
         animate={{ 
           rotate: [0, 0, 360, 1080], 
@@ -763,7 +761,9 @@ const Intro = ({ onHandoff, onDone }: { onHandoff: () => void; onDone: () => voi
           ease: [0.34, 1.56, 0.64, 1],
           times: [0, INTRO_HOLD_MS / total, (INTRO_HOLD_MS + INTRO_SLOW_MS) / total, 1]
         }}
-      />
+      >
+        ORA
+      </motion.div>
     </motion.div>
   );
 };
