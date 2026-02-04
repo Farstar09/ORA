@@ -1,5 +1,5 @@
 import { Routes, Route, Link } from "react-router-dom";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import type { ReactNode } from "react";
 import { motion, useInView } from "framer-motion";
 import { Users, Gamepad2, Shield } from "lucide-react";
@@ -741,7 +741,8 @@ const Intro = ({ onHandoff, onDone }: { onHandoff: () => void; onDone: () => voi
       onAnimationComplete={() => {
         if (phase === "fade") onDone();
       }}
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black overflow-hidden pointer-events-none"
+      className="fixed inset-0 flex items-center justify-center bg-black overflow-hidden pointer-events-none"
+      style={{ zIndex: 9999 }}
     >
       <motion.div
         initial={{ opacity: 0 }}
@@ -750,11 +751,11 @@ const Intro = ({ onHandoff, onDone }: { onHandoff: () => void; onDone: () => voi
         className="absolute inset-0 bg-white -z-10"
       />
 
-      <div className="relative z-10 text-7xl font-extrabold tracking-[0.15em] text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-fuchsia-500 to-purple-600">
+      <div className="relative z-10 text-7xl font-extrabold tracking-[0.15em]">
         {INTRO_LETTERS.map((letter) => (
           <motion.span
             key={letter.char}
-            className="inline-block"
+            className="inline-block bg-gradient-to-r from-purple-500 via-fuchsia-500 to-purple-600 bg-clip-text text-transparent"
             initial={{ rotate: 0, opacity: 0, scale: 0.6, x: letter.offsetX, y: letter.offsetY }}
             animate={{ 
               rotate: [0, 0, 360, 1080], 
@@ -781,14 +782,15 @@ export default function App() {
   const [introVisible, setIntroVisible] = useState(true);
   const [handoff, setHandoff] = useState(false);
 
+  const handleHandoff = useCallback(() => setHandoff(true), []);
+  const handleDone = useCallback(() => setIntroVisible(false), []);
+
   return (
     <>
       {introVisible ? (
         <Intro
-          onHandoff={() => setHandoff(true)}
-          onDone={() => {
-            setIntroVisible(false);
-          }}
+          onHandoff={handleHandoff}
+          onDone={handleDone}
         />
       ) : null}
 
