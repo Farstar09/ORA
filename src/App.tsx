@@ -707,9 +707,9 @@ const St4rPage = () => (
 const INTRO_HOLD_MS = 800;
 const INTRO_SLOW_MS = 900;
 const INTRO_FAST_MS = 700;
-const INTRO_FADE_MS = 500;
-const INTRO_OFFSET_X = -100;
-const INTRO_OFFSET_Y = -50;
+const INTRO_FADE_MS = 300;
+const INTRO_OFFSET_X = 0;
+const INTRO_OFFSET_Y = -100;
 
 const Intro = ({ onHandoff, onDone }: { onHandoff: () => void; onDone: () => void }) => {
   const [phase, setPhase] = useState<"hold" | "spin" | "fade">("hold");
