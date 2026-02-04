@@ -741,7 +741,8 @@ const Intro = ({ onHandoff, onDone }: { onHandoff: () => void; onDone: () => voi
       onAnimationComplete={() => {
         if (phase === "fade") onDone();
       }}
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black overflow-hidden pointer-events-none"
+      className="fixed inset-0 flex items-center justify-center bg-black overflow-hidden pointer-events-none"
+      style={{ zIndex: 9999 }}
     >
       <motion.div
         initial={{ opacity: 0 }}
@@ -754,12 +755,7 @@ const Intro = ({ onHandoff, onDone }: { onHandoff: () => void; onDone: () => voi
         {INTRO_LETTERS.map((letter) => (
           <motion.span
             key={letter.char}
-            className="inline-block bg-gradient-to-r from-purple-500 via-fuchsia-500 to-purple-600"
-            style={{
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text'
-            }}
+            className="inline-block bg-gradient-to-r from-purple-500 via-fuchsia-500 to-purple-600 bg-clip-text text-transparent"
             initial={{ rotate: 0, opacity: 0, scale: 0.6, x: letter.offsetX, y: letter.offsetY }}
             animate={{ 
               rotate: [0, 0, 360, 1080], 
