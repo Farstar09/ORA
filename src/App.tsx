@@ -709,6 +709,12 @@ const INTRO_SLOW_MS = 900;
 const INTRO_FAST_MS = 700;
 const INTRO_FADE_MS = 300;
 
+const INTRO_LETTERS = [
+  { char: "O", offsetX: -200, offsetY: 0 },
+  { char: "R", offsetX: 0, offsetY: -200 },
+  { char: "A", offsetX: 200, offsetY: 0 }
+];
+
 const Intro = ({ onHandoff, onDone }: { onHandoff: () => void; onDone: () => void }) => {
   const [phase, setPhase] = useState<"hold" | "spin" | "fade">("hold");
 
@@ -726,12 +732,6 @@ const Intro = ({ onHandoff, onDone }: { onHandoff: () => void; onDone: () => voi
   }, [onHandoff]);
 
   const total = INTRO_HOLD_MS + INTRO_SLOW_MS + INTRO_FAST_MS + INTRO_FADE_MS;
-
-  const letters = [
-    { char: "O", offsetX: -200, offsetY: 0 },
-    { char: "R", offsetX: 0, offsetY: -200 },
-    { char: "A", offsetX: 200, offsetY: 0 }
-  ];
 
   return (
     <motion.div
@@ -751,7 +751,7 @@ const Intro = ({ onHandoff, onDone }: { onHandoff: () => void; onDone: () => voi
       />
 
       <div className="relative text-7xl font-extrabold tracking-[0.15em] text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-fuchsia-500 to-purple-600">
-        {letters.map((letter) => (
+        {INTRO_LETTERS.map((letter) => (
           <motion.span
             key={letter.char}
             className="inline-block"
