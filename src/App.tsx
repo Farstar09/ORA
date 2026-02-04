@@ -758,7 +758,7 @@ const Intro = ({ onHandoff, onDone }: { onHandoff: () => void; onDone: () => voi
             initial={{ rotate: 0, opacity: 0, scale: 0.6, x: letter.offsetX, y: letter.offsetY }}
             animate={{ 
               rotate: [0, 0, 360, 1080], 
-              opacity: [0, 1, 1, 0], 
+              opacity: [0, 1, 1, 1], 
               scale: [0.6, 1.1, 1.15, 1], 
               x: [letter.offsetX, 0, 0, 0],
               y: [letter.offsetY, 0, 0, 0]
