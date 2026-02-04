@@ -704,10 +704,10 @@ const St4rPage = () => (
   </Page>
 );
 
-const INTRO_HOLD_MS = 400;
-const INTRO_SLOW_MS = 500;
-const INTRO_FAST_MS = 400;
-const INTRO_FADE_MS = 300;
+const INTRO_HOLD_MS = 800;
+const INTRO_SLOW_MS = 900;
+const INTRO_FAST_MS = 700;
+const INTRO_FADE_MS = 500;
 const INTRO_OFFSET_X = -100;
 const INTRO_OFFSET_Y = -50;
 
@@ -741,8 +741,8 @@ const Intro = ({ onHandoff, onDone }: { onHandoff: () => void; onDone: () => voi
     >
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: [0, 0.9, 0] }}
-        transition={{ duration: 0.3, times: [0, 0.4, 1], ease: "easeOut" }}
+        animate={{ opacity: [0, 1, 0] }}
+        transition={{ duration: 0.6, times: [0, 0.3, 1], ease: "easeOut" }}
         className="absolute inset-0 bg-white"
       />
 
@@ -750,11 +750,11 @@ const Intro = ({ onHandoff, onDone }: { onHandoff: () => void; onDone: () => voi
         src="assets/ora-logo.png"
         alt="ORA Logo"
         className="relative w-40 h-40"
-        initial={{ rotate: 0, opacity: 0, scale: 0.8, x: INTRO_OFFSET_X, y: INTRO_OFFSET_Y }}
+        initial={{ rotate: 0, opacity: 0, scale: 0.6, x: INTRO_OFFSET_X, y: INTRO_OFFSET_Y }}
         animate={{ 
-          rotate: [0, 0, 180, 720], 
+          rotate: [0, 0, 360, 1080], 
           opacity: [0, 1, 1, 0], 
-          scale: [0.8, 1, 1.05, 1], 
+          scale: [0.6, 1.1, 1.15, 1], 
           x: [INTRO_OFFSET_X, 0, 0, 0],
           y: [INTRO_OFFSET_Y, 0, 0, 0]
         }}
