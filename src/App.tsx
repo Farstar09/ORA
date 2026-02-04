@@ -747,10 +747,10 @@ const Intro = ({ onHandoff, onDone }: { onHandoff: () => void; onDone: () => voi
         initial={{ opacity: 0 }}
         animate={{ opacity: [0, 0.7, 0] }}
         transition={{ duration: 0.6, times: [0, 0.3, 1], ease: "easeOut" }}
-        className="absolute inset-0 bg-white"
+        className="absolute inset-0 bg-white -z-10"
       />
 
-      <div className="relative text-7xl font-extrabold tracking-[0.15em] text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-fuchsia-500 to-purple-600">
+      <div className="relative z-10 text-7xl font-extrabold tracking-[0.15em] text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-fuchsia-500 to-purple-600">
         {INTRO_LETTERS.map((letter) => (
           <motion.span
             key={letter.char}
