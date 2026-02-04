@@ -751,9 +751,9 @@ const Intro = ({ onHandoff, onDone }: { onHandoff: () => void; onDone: () => voi
       />
 
       <div className="relative text-7xl font-extrabold tracking-[0.15em] text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-fuchsia-500 to-purple-600">
-        {letters.map((letter, i) => (
+        {letters.map((letter) => (
           <motion.span
-            key={i}
+            key={letter.char}
             className="inline-block"
             initial={{ rotate: 0, opacity: 0, scale: 0.6, x: letter.offsetX, y: letter.offsetY }}
             animate={{ 
